@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Component, PureComponent } from 'react';
+import Child from './Child'
+import Child2 from './Child2'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends PureComponent {
+  constructor(){
+    super();
+    this.state = {
+      data : 10
+    }
+  }
+  render(){
+    console.warn("Rendered Parent")
+    return(
+      <div className = "App" >
+        <h1>Component {this.state.data}</h1>
+        <button onClick={()=>{this.setState({data:this.state.data+1})}}>Increment</button>
+        <Child data={this.state.data}/>
+        <Child2 data={this.state.data}/>
+      </div>
+    );
+  }
 }
 
 export default App;
